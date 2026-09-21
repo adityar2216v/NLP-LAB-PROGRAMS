@@ -24,6 +24,8 @@ This repository contains the complete **Unit 1 Natural Language Processing (NLP)
 * **Python 3.x**
 * **NLTK (Natural Language Toolkit)**
 * **spaCy (Industrial-Strength NLP)**
+* **scikit-learn (Machine Learning & Feature Extraction)**
+* **NumPy (Numerical Computing)**
 
 ---
 
@@ -31,12 +33,22 @@ This repository contains the complete **Unit 1 Natural Language Processing (NLP)
 
 | S. No. | Program | File | CO |
 | :---: | :--- | :--- | :---: |
-| 1 | Tokenization of Sentences and Words using NLTK and spaCy | `01_tokenization.py` | CO1 |
-| 2 | Stemming and Lemmatization on Sample Text | `02_stemming_lemmatization.py` | CO1 |
-| 3 | Stop-word Removal from a Document | `03_stopword_removal.py` | CO1 |
-| 4 | Part-of-Speech (POS) Tagging of a Given Sentence | `04_pos_tagging.py` | CO1 |
-| 5 | Parsing and Chunking using RegEx and spaCy | `05_parsing_chunking.py` | CO1 |
-| 6 | Named Entity Recognition (NER) using spaCy | `06_named_entity_recognition.py` | CO1 |
+| 1 | Tokenization of Sentences and Words using NLTK and spaCy | `Unit-1/01_tokenization.py` | CO1 |
+| 2 | Stemming and Lemmatization on Sample Text | `Unit-1/02_stemming_lemmatization.py` | CO1 |
+| 3 | Stop-word Removal from a Document | `Unit-1/03_stopword_removal.py` | CO1 |
+| 4 | Part-of-Speech (POS) Tagging of a Given Sentence | `Unit-1/04_pos_tagging.py` | CO1 |
+| 5 | Parsing and Chunking using RegEx and spaCy | `Unit-1/05_parsing_chunking.py` | CO1 |
+| 6 | Named Entity Recognition (NER) using spaCy | `Unit-1/06_named_entity_recognition.py` | CO1 |
+
+---
+
+## Unit 2 Programs
+
+| S. No. | Program | File | CO |
+| :---: | :--- | :--- | :---: |
+| 1 | Bag of Words (BoW) Model | `unit-2/01_bag_of_words.py` | CO2 |
+| 2 | Term Frequency - Inverse Document Frequency (TF-IDF) | `unit-2/02_tfidf.py` | CO2 |
+| 3 | N-gram Modeling and Feature Extraction | `unit-2/03_ngrams.py` | CO2 |
 
 ---
 
@@ -46,13 +58,17 @@ This repository contains the complete **Unit 1 Natural Language Processing (NLP)
 NLP-Lab-Programs/
 ├── README.md
 ├── requirements.txt
-└── Unit-1/
-    ├── 01_tokenization.py
-    ├── 02_stemming_lemmatization.py
-    ├── 03_stopword_removal.py
-    ├── 04_pos_tagging.py
-    ├── 05_parsing_chunking.py
-    └── 06_named_entity_recognition.py
+├── Unit-1/
+│   ├── 01_tokenization.py
+│   ├── 02_stemming_lemmatization.py
+│   ├── 03_stopword_removal.py
+│   ├── 04_pos_tagging.py
+│   ├── 05_parsing_chunking.py
+│   └── 06_named_entity_recognition.py
+└── unit-2/
+    ├── 01_bag_of_words.py
+    ├── 02_tfidf.py
+    └── 03_ngrams.py
 ```
 
 ---
@@ -108,24 +124,18 @@ python -m spacy download en_core_web_sm
 
 Execute each program individually from the repository root:
 
-```bash
-# Program 1: Tokenization
+# Unit 1 Programs
 python Unit-1/01_tokenization.py
-
-# Program 2: Stemming and Lemmatization
 python Unit-1/02_stemming_lemmatization.py
-
-# Program 3: Stop-word Removal
 python Unit-1/03_stopword_removal.py
-
-# Program 4: Part-of-Speech (POS) Tagging
 python Unit-1/04_pos_tagging.py
-
-# Program 5: Parsing and Chunking
 python Unit-1/05_parsing_chunking.py
-
-# Program 6: Named Entity Recognition
 python Unit-1/06_named_entity_recognition.py
+
+# Unit 2 Programs
+python unit-2/01_bag_of_words.py
+python unit-2/02_tfidf.py
+python unit-2/03_ngrams.py
 ```
 
 ---
@@ -178,9 +188,34 @@ python Unit-1/06_named_entity_recognition.py
 
 ---
 
+## Unit 2 Program Summaries
+
+### 1. Bag of Words (BoW) Model (`unit-2/01_bag_of_words.py`)
+* **Purpose:** Represent documents as numerical word occurrence vectors across a defined vocabulary.
+* **Main Concept:** Extracts unique words across a corpus, creates vocabulary indices, and constructs count (term frequency) and binary (presence/absence) vectors while ignoring word order and grammar.
+* **Libraries Used:** Pure Python (from scratch) and scikit-learn (`CountVectorizer`, `cosine_similarity`).
+* **Short Explanation:** Implements BoW from first principles using standard Python data structures and compares against scikit-learn's `CountVectorizer`. Demonstrates stop words removal and pairwise document similarity computation.
+* **Expected Output:** Extracted vocabulary list, document-term count matrix, binary matrix, scikit-learn feature index mapping, cosine similarity table, and stopword-filtered count matrix.
+
+### 2. Term Frequency - Inverse Document Frequency (`unit-2/02_tfidf.py`)
+* **Purpose:** Evaluate the relative importance of words within documents relative to the entire corpus.
+* **Main Concept:** Offsets high-frequency words by multiplying Term Frequency ($TF$) by Inverse Document Frequency ($IDF$), followed by $L_2$ Euclidean normalization.
+* **Libraries Used:** Pure Python / NumPy (mathematical formulation from scratch) and scikit-learn (`TfidfVectorizer`, `cosine_similarity`).
+* **Short Explanation:** Performs manual step-by-step mathematical calculations of normalized TF, Document Frequency (DF), smooth IDF values, raw TF-IDF, and $L_2$-normalized vectors. Validates against scikit-learn and extracts top keywords per document.
+* **Expected Output:** Vocabulary listing, step-by-step TF table, DF and smooth IDF values, raw TF-IDF matrix, unit-norm normalized matrix, scikit-learn comparison matrix, top salient keywords per document, and pairwise cosine similarity.
+
+### 3. N-gram Modeling and Feature Extraction (`unit-2/03_ngrams.py`)
+* **Purpose:** Capture local sequential context and multi-word phrases beyond single unigrams.
+* **Main Concept:** Extracts contiguous sequences of $n$ items (words or characters) to capture collocations, phrase semantics, and transition probabilities.
+* **Libraries Used:** Pure Python (list slicing & zip), NLTK (`ngrams`, `FreqDist`), and scikit-learn (`CountVectorizer(ngram_range=...)`).
+* **Short Explanation:** Generates unigrams, bigrams, trigrams, and character n-grams from scratch. Uses NLTK to identify top collocations and calculate conditional transition probabilities $P(w_n | w_{n-1})$. Demonstrates bigram and combined unigram/bigram feature extraction using scikit-learn.
+* **Expected Output:** Lists of word unigrams, bigrams, and trigrams; character trigrams; most frequent bigrams with counts; conditional next-word probabilities; and scikit-learn n-gram feature matrices.
+
+---
+
 ## Learning Outcomes
 
-Upon completing the experiments in this unit, students will be able to:
+Upon completing the experiments in these units, students will be able to:
 1. Formulate and implement standard text preprocessing pipelines for real-world NLP applications.
 2. Select appropriate tokenization algorithms and evaluate token segmentation boundaries.
 3. Compare and contrast the trade-offs between stemming (speed, heuristic) and lemmatization (morphological validity).
@@ -188,6 +223,9 @@ Upon completing the experiments in this unit, students will be able to:
 5. Apply POS taggers to assign grammatical categories for downstream syntactic tasks.
 6. Design regular expression chunk grammars and inspect syntactic dependency relations.
 7. Implement Named Entity Recognition pipelines to extract structured business and domain intelligence from text.
+8. Construct Bag of Words (BoW) representations from first principles and with scikit-learn.
+9. Formulate, calculate, and interpret TF-IDF matrices and extract distinctive document keywords.
+10. Generate and analyze word and character N-grams, compute language model conditional probabilities, and vectorize text using n-gram feature ranges.
 
 ---
 
@@ -200,6 +238,6 @@ Upon completing the experiments in this unit, students will be able to:
 ## Academic Information
 
 * **Course:** Natural Language Processing
-* **Unit:** Unit 1
-* **CO:** CO1
+* **Units:** Unit 1 & Unit 2
+* **COs:** CO1, CO2
 * **Institution:** [College/University Name]

@@ -1,5 +1,7 @@
-# Natural Language Processing Lab - Unit 1 Dependencies
+# Natural Language Processing Lab - Dependencies
 # Install with: pip install -r requirements.txt
 
 nltk>=3.8.1
 spacy>=3.7.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
